@@ -579,7 +579,7 @@ int set_cabc(int level)
 {
     int ret = 0;
 
-	if(!(is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035)||is_project(OPPO_15109))){
+	if(!(is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035)||is_project(OPPO_15109) ||is_project(OPPO_15399))){
 		return 0;
 	}
 	pr_err("%s : %d \n",__func__,level);
@@ -640,7 +640,7 @@ int set_cabc(int level)
 static int set_cabc_resume_mode(int mode)
 {
     int ret;
-	if(!(is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035) ||is_project(OPPO_15109))){
+	if(!(is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035) ||is_project(OPPO_15109) ||is_project(OPPO_15399))){
 		return 0;
 	}
 	pr_err("%s : %d yxr \n",__func__,mode);
@@ -1222,14 +1222,14 @@ static void mdss_dsi_panel_bl_ctrl(struct mdss_panel_data *pdata,
 		bl_level = 0;
 	}
 
-	if (is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15109)){
+	if (is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15109) ||is_project(OPPO_15399)){
 		if (flag_first_set_bl) {
 			set_backlight_pwm(1);
 			flag_first_set_bl = false;
 		}
 	}
 
-	if (is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035) || is_project(OPPO_15109)) {
+	if (is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035) || is_project(OPPO_15109) ||is_project(OPPO_15399)) {
 		lm3630_bank_a_update_status(bl_level);
 	}
 #endif /* VENDOR_EDIT */
@@ -1315,7 +1315,7 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 
 #ifdef VENDOR_EDIT
 /* YongPeng.Yi@SWDP.MultiMedia, 2015/05/29  Add for 15009 cabc START */
-		if((is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035)||is_project(OPPO_15109)) && ctrl->ndx==0){
+		if((is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035)||is_project(OPPO_15109) ||is_project(OPPO_15399)) && ctrl->ndx==0){
 			set_backlight_pwm(1);
 			if(cabc_mode != CABC_HIGH_MODE){
 					set_cabc_resume_mode(cabc_mode);
@@ -2639,10 +2639,20 @@ int mdss_dsi_panel_init(struct device_node *node,
 	}else if(!strcmp(panel_name,"oppo15109tm nt35592 720p video mode dsi panel")){
 	    lcd_dev = LCD_15109_TM_NT35592;
 		pr_err("lcd_dev = LCD_15109_TM_NT35592;\n");
-	}else if(!strcmp(panel_name,"oppo15109boe ili9881c 720p video mode dsi panel")){ /*lile@EXP.BasicDrv.LCD, 2016-01-29, add for 15309 Boe LCD*/
+	}else if(!strcmp(panel_name,"oppo15109boe ili9881c 720p video mode dsi panel")){ 
 	    lcd_dev = LCD_15109_BOE_ILI9881C;
 		pr_err("lcd_dev = LCD_15109_BOE_ILI9881C;\n");
-	}else{
+	}else if(!strcmp(panel_name,"oppo15399boe ili9881c 720p video mode dsi panel")){ 
+	    lcd_dev = LCD_15399_BOE_ILI9881C;
+		pr_err("lcd_dev = LCD_15399_BOE_ILI9881C;\n");
+	}else if(!strcmp(panel_name,"oppo15399tm nt35521s 720p video mode dsi panel")){ 
+	    lcd_dev = LCD_15399_TM_NT355521S;
+		pr_err("lcd_dev = LCD_15399_TM_NT355521S;\n");
+	}else if(!strcmp(panel_name,"oppo15399truly nt35521s 720p video mode dsi panel")){ 
+	    lcd_dev = LCD_15399_TRULY_NT355521S;
+		pr_err("lcd_dev = LCD_15399_TRULY_NT355521S;\n");
+	}
+    else{
 	    lcd_dev = LCD_UNKNOW;
 		pr_err("lcd_dev is unkowned\n");
 	}
@@ -2660,7 +2670,7 @@ int mdss_dsi_panel_init(struct device_node *node,
 
 #ifdef VENDOR_EDIT
 /* YongPeng.Yi@SWDP.MultiMedia, 2015/04/03  Add for 15009 close cont splash in factory mode START */
-	if(is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035) || is_project(OPPO_15109)){
+	if(is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035) || is_project(OPPO_15109) || is_project(OPPO_15399)){
 	     if ((MSM_BOOT_MODE__FACTORY == get_boot_mode()) ||
 	   (MSM_BOOT_MODE__MOS == get_boot_mode())){
 	         pinfo->cont_splash_enabled = false;

@@ -485,7 +485,7 @@ static int mdss_dsi_off(struct mdss_panel_data *pdata, int power_state)
 #ifdef VENDOR_EDIT
 	/* nanwei.deng@Mobile Phone Software bsp.Driver, 2014/10/30  Add for 14045 charger */
 /*huqiao@EXP.BasicDrv.Basic add for clone 15085*/
-	if (is_project(OPPO_14005) || is_project(OPPO_15009) || is_project(OPPO_15037) || is_project(OPPO_15018) || is_project(OPPO_15022) || is_project(OPPO_14045) || is_project(OPPO_15005)|| is_project(OPPO_15011) || is_project(OPPO_15085) || is_project(OPPO_15109))
+	if (is_project(OPPO_14005) || is_project(OPPO_15009) || is_project(OPPO_15037) || is_project(OPPO_15018) || is_project(OPPO_15022) || is_project(OPPO_14045) || is_project(OPPO_15005)|| is_project(OPPO_15011) || is_project(OPPO_15085) || is_project(OPPO_15109) || is_project(OPPO_15399))
 	{
 		opchg_check_lcd_off();
 	}

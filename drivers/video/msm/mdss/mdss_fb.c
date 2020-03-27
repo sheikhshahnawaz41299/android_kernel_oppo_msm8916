@@ -730,7 +730,7 @@ extern int cabc_mode;
 static ssize_t mdss_get_cabc(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
-	if(!(is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035)||is_project(OPPO_15109))){
+	if(!(is_project(OPPO_15009)||is_project(OPPO_15037)||is_project(OPPO_15035)||is_project(OPPO_15109) || is_project(OPPO_15399))){
 		return 0;
 	}
 	printk(KERN_INFO "get cabc mode = %d\n",cabc_mode);
