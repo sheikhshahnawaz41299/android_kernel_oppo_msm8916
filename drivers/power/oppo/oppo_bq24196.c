@@ -332,12 +332,12 @@ int bq24196_set_fastchg_current(struct opchg_charger *chip, int ifast_mA)
     u8 value;
 
 /*huqiao@EXP.BasicDrv.Basic add for clone 15085*/
-	if(is_project(OPPO_14037) || is_project(OPPO_15057) || is_project(OPPO_15009) || is_project(OPPO_15037)|| is_project(OPPO_15085)){
+	if(is_project(OPPO_14037) || is_project(OPPO_15057) || is_project(OPPO_15009) || is_project(OPPO_15037)|| is_project(OPPO_15085) || is_project(OPPO_15399)){
 		if((!chip->batt_authen) && (ifast_mA > chip->non_standard_fastchg_current_ma))
 			ifast_mA = chip->non_standard_fastchg_current_ma;
 	}
 /*huqiao@EXP.BasicDrv.Basic add for clone 15085*/
-	if(is_project(OPPO_14037) || is_project(OPPO_14051) || is_project(OPPO_15057) || is_project(OPPO_15009) || is_project(OPPO_15037)|| is_project(OPPO_15085))
+	if(is_project(OPPO_14037) || is_project(OPPO_14051) || is_project(OPPO_15057) || is_project(OPPO_15009) || is_project(OPPO_15037)|| is_project(OPPO_15085) || is_project(OPPO_15399))
 		dev_dbg(chip->dev, "%s ibatmax:%d",__func__,ifast_mA);
 
 #if 1
@@ -912,7 +912,7 @@ int bq24196_chg_uv(struct opchg_charger *chip, u8 status)
 	/*****************************************
 	* External OVP circuit sets enable switch
 	*****************************************/
-	if(is_project(OPPO_15035)||
+	if(is_project(OPPO_15035) || is_project(OPPO_15399) ||
 		(is_project(OPPO_15109) && (get_PCB_Version() == HW_VERSION__10||get_PCB_Version() == HW_VERSION__12||get_PCB_Version() == HW_VERSION__14||get_PCB_Version() == HW_VERSION__15)))
 	{
 		opchg_switch_to_usbin(chip,!status);

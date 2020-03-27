@@ -3513,7 +3513,17 @@ static int set_battery_data(struct qpnp_bms_chip *chip)
 			pr_err("No available batterydata\n");
 			return -EINVAL;
 		}
-	}
+	} else if (is_project(OPPO_15399)) { 
+		node = of_find_node_by_name(chip->spmi->dev.of_node,
+					"qcom,battery-data-high-atl");
+		if (!node) {
+			pr_err("No available batterydata\n");
+			return -EINVAL;
+		} else
+			{
+				pr_err("available high atl batterydata\n");
+			}
+    }
     //#ifdef VENDOR_EDIT
     /*chaoying.chen@EXP.BaseDrv.charge,2015/06/19  modify  for 15085*/
     else if (is_project(OPPO_15085)) {

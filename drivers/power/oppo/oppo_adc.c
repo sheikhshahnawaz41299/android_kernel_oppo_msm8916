@@ -124,7 +124,7 @@ int opchg_get_prop_low_battery_voltage(struct opchg_charger *chip)
 
 	   case OPCHG_BQ24196_ID:
 	   /*huqiao@EXP.BasicDrv.Basic add for clone 15085*/
-			if(is_project(OPPO_14037) || is_project(OPPO_14051) || is_project(OPPO_15057) || is_project(OPPO_15009) || is_project(OPPO_15037)|| is_project(OPPO_15085) || is_project(OPPO_15109))
+			if(is_project(OPPO_14037) || is_project(OPPO_14051) || is_project(OPPO_15057) || is_project(OPPO_15009) || is_project(OPPO_15037)|| is_project(OPPO_15085) || is_project(OPPO_15109) || is_project(OPPO_15399))
 			{
 				return 0;
 			}

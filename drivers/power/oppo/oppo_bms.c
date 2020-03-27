@@ -406,7 +406,7 @@ int opchg_get_prop_batt_capacity(struct opchg_charger *chip)
 	if(is_project(OPPO_14043) || is_project(OPPO_14037) || is_project(OPPO_14051) ||
 		is_project(OPPO_15005)|| is_project(OPPO_15057) ||
 		is_project(OPPO_15009)|| is_project(OPPO_15037) || is_project(OPPO_15035)||
-        is_project(OPPO_15085) || is_project(OPPO_15109) ){
+        is_project(OPPO_15085) || is_project(OPPO_15109) || is_project(OPPO_15399)){
 		soc = opchg_get_prop_batt_capacity_from_bms(chip);
 	} else if(is_project(OPPO_15025)) {
 		soc = opchg_get_prop_batt_capacity_from_bms_bq24157(chip);
@@ -458,7 +458,7 @@ int opchg_get_prop_current_now(struct opchg_charger *chip)
 				chg_current = -chg_current;
 		}
 	}
-	else if(is_project(OPPO_15035)){
+	else if(is_project(OPPO_15035) || is_project(OPPO_15399)){
 		if(!chip->chg_present){
 			chg_current = 0;
 		} else {
