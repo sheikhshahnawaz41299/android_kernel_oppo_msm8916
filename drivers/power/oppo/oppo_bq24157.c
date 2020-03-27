@@ -15,7 +15,7 @@
 *******************************************************************************/
 
 #define OPPO_BQ24157_PAR
-#include <oppo_inc.h>
+#include "oppo_inc.h"
 
 int bq24157_get_prop_charge_type(struct opchg_charger *chip)
 {

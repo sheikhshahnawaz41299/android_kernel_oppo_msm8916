@@ -34,7 +34,7 @@
 //#include <linux/boot_mode.h>
 #include <soc/oppo/boot_mode.h>
 #include <soc/oppo/device_info.h>
-#include <oppo_inc.h>
+#include "oppo_inc.h"
 
 
 #define DEVICE_BATTERY_ID_VERSION		"1.0"

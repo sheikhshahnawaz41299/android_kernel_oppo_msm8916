@@ -13,7 +13,7 @@
 *******************************************************************************/
 
 #define OPPO_CHARGER_PAR
-#include <oppo_inc.h>
+#include "oppo_inc.h"
 //huqiao modified for 15085 2015-07-15
 
 bool is_gt1x_tp_charger =false;

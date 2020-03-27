@@ -13,7 +13,7 @@
 *******************************************************************************/
 
 #define OPPO_VOOC_STM8S_PAR
-#include <oppo_inc.h>
+#include "oppo_inc.h"
 
 //static struct task_struct *pic16f_fw_update_task = NULL;
 #define BYTE_OFFSET			2

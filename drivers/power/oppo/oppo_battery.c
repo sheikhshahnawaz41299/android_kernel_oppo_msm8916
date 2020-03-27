@@ -13,7 +13,7 @@
 *******************************************************************************/
 
 #define OPPO_BATTERY_PAR
-#include <oppo_inc.h>
+#include "oppo_inc.h"
 
 void (*synaptics_chg_mode_enable)(int enable); //enable  0: no   1: slow  3:  quickly charge
 int is_oppo_fast_charger = 0;
