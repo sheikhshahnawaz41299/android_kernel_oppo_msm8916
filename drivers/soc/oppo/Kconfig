@@ -41,6 +41,12 @@ config MACH_15109
 	help
 	  Support for the F1f variant
 
+config MACH_15399
+	select MACH_OPPO_MSM8916
+	bool "A37f"
+	help
+	  Support for the A37f variant
+
 endmenu
 
 menu "OPPO specific options"
