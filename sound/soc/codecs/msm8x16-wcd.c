@@ -349,7 +349,7 @@ static int oppo_codec_version_init(struct msm8x16_wcd *msm8x16){
     int i;
     /*xiang.fei@Multimedia, 2014/09/10, Add for yda145*/
     if(is_project(OPPO_14043) || is_project(OPPO_14041) || is_project(OPPO_14042) || is_project(OPPO_14037) || is_project(OPPO_14039)
-    || is_project(OPPO_14040) || is_project(OPPO_14051) || is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109))
+    || is_project(OPPO_14040) || is_project(OPPO_14051) || is_project(OPPO_15009) || is_project(OPPO_15035) || is_project(OPPO_15037) || is_project(OPPO_15109) || is_project(OPPO_15399))
     {
         /*xiang.fei@Multimedia, 2014/09/19, Add for compatible audio*/
         msm8x16->pcb_ver_flag0 = of_get_named_gpio(msm8x16->dev->of_node,
@@ -1622,7 +1622,7 @@ static int ts4621_pa_gain_put(struct snd_kcontrol *kcontrol,
         ts4621_gain_value = 0x2c; // -4dB
 		break;
 	case 1:
-	if (is_project(OPPO_15035) ||is_project(OPPO_15109))
+	if (is_project(OPPO_15035) || is_project(OPPO_15109) || is_project(OPPO_15399))
         {
 		ts4621_gain_value = 0x3A; // 2dB
         } else {
@@ -3014,7 +3014,7 @@ static int msm8x16_wcd_codec_enable_micbias(struct snd_soc_dapm_widget *w,
 					WCD_EVENT_PRE_MICBIAS_2_OFF);
 			/*OPPO 2015-06-24 zhangping Add for headphone detect incorrect in phone*/
             #ifdef VENDOR_EDIT
-			if((is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)))
+			if((is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399)))
 			{
 				snd_soc_update_bits(codec,MSM8X16_WCD_A_ANALOG_MICB_2_EN,0xC0, 0x00);
 			}
@@ -3424,7 +3424,7 @@ static int msm8x16_wcd_ext_spk_event(struct snd_soc_dapm_widget *w,
 	case SND_SOC_DAPM_POST_PMU:
 	#ifdef VENDOR_EDIT
 	//John.Xu@PhoneSw.AudioDriver, 2015/01/09, Add for yda145 boost
-	if(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)){
+	if(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399)){
 		if (gpio_is_valid(msm8x16_wcd->mbhc.mbhc_cfg->gpio_yda145_boost_en))
 		{
 			err = gpio_request(msm8x16_wcd->mbhc.mbhc_cfg->gpio_yda145_boost_en,"YDA_BOOST");
@@ -3446,7 +3446,7 @@ static int msm8x16_wcd_ext_spk_event(struct snd_soc_dapm_widget *w,
 		else
 		{
 			// For 15035 decrease the wait time to 20 ms
-			if (is_project(OPPO_15035) ||is_project(OPPO_15109)) {
+			if (is_project(OPPO_15035) ||is_project(OPPO_15109)||is_project(OPPO_15399)) {
 				pr_err("%s: msecs_to_jiffies(10) \n", __func__);
 				schedule_delayed_work(&msm8x16_ext_pa_enable_work.ext_spk_pa_enable_work,
 					msecs_to_jiffies(10));
@@ -3482,7 +3482,7 @@ static int msm8x16_wcd_ext_spk_event(struct snd_soc_dapm_widget *w,
 		cancel_delayed_work_sync(&msm8x16_ext_pa_enable_work.ext_spk_pa_enable_work);
 	#ifdef VENDOR_EDIT
 	//John.Xu@PhoneSw.AudioDriver, 2015/01/09, Add for yda145 boost
-	    if(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)){
+	    if(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399)){
 	        gpio_direction_output(msm8x16_wcd->mbhc.mbhc_cfg->gpio_yda145_boost_en, 0);
 	    }
 	#endif /* VENDOR_EDIT */
@@ -3755,7 +3755,7 @@ static int msm8x16_wcd_hph_pa_event(struct snd_soc_dapm_widget *w,
 				MSM8X16_WCD_A_ANALOG_RX_HPH_L_TEST, 0x04, 0x04);
 		/*OPPO	2015-05-08, zhangping add for  pop noise*/
 		#ifdef VENDOR_EDIT
-		if(!(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)))
+		if(!(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399)))
 		{
 			msm8x16_notifier_call(codec,WCD_EVENT_PRE_HPHL_PA_ON);
 		}
@@ -3766,7 +3766,7 @@ static int msm8x16_wcd_hph_pa_event(struct snd_soc_dapm_widget *w,
 				MSM8X16_WCD_A_ANALOG_RX_HPH_R_TEST, 0x04, 0x04);
 		/*OPPO	2015-05-08, zhangping add for  pop noise*/
 		#ifdef VENDOR_EDIT
-		   if(!(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)))
+		   if(!(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399)))
 		   {
 				msm8x16_notifier_call(codec,WCD_EVENT_PRE_HPHR_PA_ON);
 		   }
@@ -3813,7 +3813,7 @@ static int msm8x16_wcd_hph_pa_event(struct snd_soc_dapm_widget *w,
 				MSM8X16_WCD_A_ANALOG_RX_HPH_L_TEST, 0x04, 0x00);
 	/*OPPO	2015-05-08, zhangping add for  pop noise*/
 	#ifdef VENDOR_EDIT
-		if(!(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)))
+		if(!(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399)))
 		{
 			 msm8x16_notifier_call(codec,WCD_EVENT_POST_HPHL_PA_OFF);
 		}
@@ -3826,7 +3826,7 @@ static int msm8x16_wcd_hph_pa_event(struct snd_soc_dapm_widget *w,
 				MSM8X16_WCD_A_ANALOG_RX_HPH_R_TEST, 0x04, 0x00);
 	/*OPPO	2015-05-08, zhangping add for  pop noise*/
 	#ifdef VENDOR_EDIT
-		if(!(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)))
+		if(!(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399)))
 		{
 			msm8x16_notifier_call(codec,WCD_EVENT_POST_HPHR_PA_OFF);
 		}
@@ -5021,7 +5021,7 @@ static int msm8x16_wcd_codec_probe(struct snd_soc_codec *codec)
 
     /* Ming.Liu@Multimedia.AudioDrv, 2015-07-28, Added begin for default HP PA gain */
     #ifdef VENDOR_EDIT
-    if (is_project(OPPO_15035) || is_project(OPPO_15109))
+    if (is_project(OPPO_15035) || is_project(OPPO_15109)||is_project(OPPO_15399))
     {
 	ts4621_gain_value = 0x3A; // 2dB
     } else {

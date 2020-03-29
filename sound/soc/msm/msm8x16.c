@@ -1627,7 +1627,7 @@ static void *def_msm8x16_wcd_mbhc_cal(void)
 	btn_low[3] = 139;
 	btn_high[3] = 140;
 /*ping.zhang@Multimedia, 2015/06/10, Modify for selfiestick*/
-   if (is_project(OPPO_15009) || is_project(OPPO_15035) || is_project(OPPO_15037)||is_project(OPPO_15109))
+   if (is_project(OPPO_15009) || is_project(OPPO_15035) || is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399))
    {
 		btn_low[4] = 175;
    }
@@ -3084,7 +3084,7 @@ static int msm8x16_asoc_machine_probe(struct platform_device *pdev)
             pr_err("%s: 15009 hw version after EVT2, hs use external micbias\n", __func__);
         }
     }
-	if(is_project(OPPO_15035) || is_project(OPPO_15037)||is_project(OPPO_15109))
+	if(is_project(OPPO_15035) || is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399))
 	{
 		mbhc_cfg.hs_ext_micbias = true;
         pr_err("%s: 15037 hw version after EVT2, hs use external micbias\n", __func__);
@@ -3119,7 +3119,7 @@ static int msm8x16_asoc_machine_probe(struct platform_device *pdev)
 
 //John.Xu@PhoneSw.AudioDriver, 2015/04/30, Add for 15025 headset compatible
 #ifdef VENDOR_EDIT
-    if(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)){
+    if(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15399)){
         if(is_15009_after_evt2){
             ret = snd_soc_of_parse_audio_routing(card,
                 "qcom,audio-routing-15009-after-evt2");
@@ -3144,7 +3144,7 @@ static int msm8x16_asoc_machine_probe(struct platform_device *pdev)
 		ret = -EPROBE_DEFER;
 		goto err;
 	}
-   if(is_project(OPPO_15009) || is_project(OPPO_15035) ||is_project(OPPO_15037)||is_project(OPPO_15109))
+   if(is_project(OPPO_15009) || is_project(OPPO_15035) ||is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399))
    {
       pdata->spk_pa_en = of_get_named_gpio(pdev->dev.of_node,
 					"spk-pa-en", 0);
@@ -3169,7 +3169,7 @@ static int msm8x16_asoc_machine_probe(struct platform_device *pdev)
 
 #ifdef VENDOR_EDIT
 /*add by zhangping .AudioDriver, 2015/01/09, Add for 15005 yda145 boost*/
-    if(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)) {
+    if(is_project(OPPO_15009) || is_project(OPPO_15035)||is_project(OPPO_15037)||is_project(OPPO_15109)||is_project(OPPO_15399)) {
 	pdata->yda145_boost_en = of_get_named_gpio(pdev->dev.of_node,
 					"yda145_boost-en", 0);
 	pr_err("pdata->yda145_boost_en = %d\n",pdata->yda145_boost_en);
