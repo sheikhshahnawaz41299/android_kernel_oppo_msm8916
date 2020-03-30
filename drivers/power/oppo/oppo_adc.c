@@ -200,7 +200,7 @@ int opchg_get_prop_battery_voltage_now(struct opchg_charger *chip)
 	int V_battery = 0;
 /*huqiao@EXP.BasicDrv.Basic add for clone 15085*/
 	if(is_project(OPPO_14043) || is_project(OPPO_14037) || is_project(OPPO_14051)
-		|| is_project(OPPO_15005) || is_project(OPPO_15057) || is_project(OPPO_15009)|| is_project(OPPO_15037)|| is_project(OPPO_15085) || is_project(OPPO_15109)){
+		|| is_project(OPPO_15005) || is_project(OPPO_15057) || is_project(OPPO_15009)|| is_project(OPPO_15037)|| is_project(OPPO_15085) || is_project(OPPO_15109)|| is_project(OPPO_15399)){
 
 		rc = qpnp_vadc_read(chip->vadc_dev, VBAT_SNS, &results);
 		if (rc) {
@@ -210,7 +210,7 @@ int opchg_get_prop_battery_voltage_now(struct opchg_charger *chip)
 		V_battery =(int)results.physical;
 
 		//battery voltage sampling Compensation
-		if(is_project(OPPO_15035)|| is_project(OPPO_15109))
+		if(is_project(OPPO_15035)|| is_project(OPPO_15109)|| is_project(OPPO_15399))
 		{
 				V_battery += 20*1000;
 		}
@@ -246,7 +246,7 @@ int opchg_get_prop_batt_temp(struct opchg_charger *chip)
 	if(is_project(OPPO_14043) || is_project(OPPO_14037) ||is_project(OPPO_14051) ||
 		is_project(OPPO_15005) || is_project(OPPO_15057) || is_project(OPPO_15025)||
 		is_project(OPPO_15009)|| is_project(OPPO_15037)|| is_project(OPPO_15035)
-        || is_project(OPPO_15085) || is_project(OPPO_15109)){
+        || is_project(OPPO_15085) || is_project(OPPO_15109)|| is_project(OPPO_15399)){
 		rc = qpnp_vadc_read(chip->vadc_dev, LR_MUX1_BATT_THERM, &results);
 		if (rc) {
 			pr_err("Unable to read batt temperature rc=%d\n", rc);

@@ -434,7 +434,7 @@ int opchg_get_prop_current_now(struct opchg_charger *chip)
 	struct qpnp_vadc_result results;
 	int chg_current = 0;
 
-	if(is_project(OPPO_15025)|| is_project(OPPO_15109)){
+	if(is_project(OPPO_15025)|| is_project(OPPO_15109)|| is_project(OPPO_15399)){
 		if(!chip->chg_present){
 			chg_current = 0;
 		} else {
@@ -458,7 +458,7 @@ int opchg_get_prop_current_now(struct opchg_charger *chip)
 				chg_current = -chg_current;
 		}
 	}
-	else if(is_project(OPPO_15035) || is_project(OPPO_15399)){
+	else if(is_project(OPPO_15035)){
 		if(!chip->chg_present){
 			chg_current = 0;
 		} else {
