@@ -10,4 +10,3 @@ obj-$(CONFIG_MT9M114) += mt9m114.o
 obj-$(CONFIG_OV5645) += ov5645.o
 obj-$(CONFIG_OV5648_BACK) += ov5648_back.o
 obj-$(CONFIG_OV5645) += ov7695.o
-obj-$(CONFIG_IMX179) += imx179.o
