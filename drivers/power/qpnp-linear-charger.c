@@ -2475,7 +2475,7 @@ static irqreturn_t qpnp_lbc_usbin_valid_irq_handler(int irq, void *_chip)
 #endif
 
 #ifdef CONFIG_MACH_OPPO
-	if (is_project(OPPO_15109))
+	if (is_project(OPPO_15109)|| is_project(OPPO_15399))
 		return IRQ_HANDLED;
 #endif
 
