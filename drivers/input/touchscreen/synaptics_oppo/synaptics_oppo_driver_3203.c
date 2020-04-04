@@ -1,6 +1,6 @@
 /************************************************************************************
 ** File: - /android/kernel/drivers/input/touchscreen/synaptic_s3203_13095/synaptics_s3203_13095.c
-** VENDOR_EDIT
+** CONFIG_MACH_OPPO
 ** Copyright (C), 2008-2012, OPPO Mobile Comm Corp., Ltd
 ** 
 ** Description:  
@@ -28,7 +28,6 @@
 #include <linux/hrtimer.h>
 #include <linux/proc_fs.h>
 #include <linux/interrupt.h>
-//#include <mach/device_info.h>
 #include <soc/oppo/boot_mode.h>
 #include <soc/oppo/oppo_project.h>
 #include <soc/oppo/device_info.h>
@@ -438,7 +437,7 @@ static struct device_attribute attrs_oppo[] = {
 /*---------------------------------------------Fuction Apply------------------------------------------------*/
 static ssize_t cap_vk_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf){
       /* LEFT: search: CENTER: menu ,home:search 412, RIGHT: BACK */
-	
+ 
 		 return sprintf(buf,
 				__stringify(EV_KEY) ":" __stringify(KEY_MENU)   ":%d:%d:%d:%d"
 			":" __stringify(EV_KEY) ":" __stringify(KEY_HOMEPAGE)   ":%d:%d:%d:%d"
@@ -3006,15 +3005,17 @@ static int synaptics_parse_dts(struct device *dev, struct synaptics_ts_data *ts)
 		ts->max_num = 10;
 	}
 	
+#ifdef CONFIG_MACH_OPPO
+
 	rc = of_property_read_u32_array(np, "synaptics,button-map", button_map, 3);
 	if(rc){
 		TPD_DEBUG("button-map not specified\n");
 		button_map[0] = 180;
 		button_map[1] = 180;
 		button_map[2] = 2021;
-			
 	}
-
+	
+#endif
 	TPD_DEBUG("synaptics:button map readed is %d %d %d\n", button_map[0], button_map[1], button_map[2]);
 	
 	rc = of_property_read_u32_array(np, "synaptics,tx-rx-num", tx_rx_num,2);
@@ -3027,6 +3028,7 @@ static int synaptics_parse_dts(struct device *dev, struct synaptics_ts_data *ts)
 	    RX_NUM =  tx_rx_num[1];	
 	}
 	TPD_ERR("synaptics,tx-rx-num is %d %d \n", TX_NUM,RX_NUM);	
+#ifdef CONFIG_MACH_OPPO
 
 	rc = of_property_read_u32_array(np, "synaptics,display-coords", temp_array, 2);
 	if(rc){
@@ -3036,9 +3038,9 @@ static int synaptics_parse_dts(struct device *dev, struct synaptics_ts_data *ts)
 	}else{
 		LCD_WIDTH = temp_array[0];
 		LCD_HEIGHT = temp_array[1];	
-		
 	}
-
+	
+#endif
 	rc = of_property_read_u32_array(np, "synaptics,panel-coords", temp_array, 2);
 	if(rc){
 		ts->max_x = 0;
@@ -3203,7 +3205,7 @@ static int synaptics_ts_probe(
 	if( (tp_dev == TP_G2Y) || (tp_dev == TP_TPK) ) {
 		sprintf(ts->manu_name, "TP_TPK"); 
 	}
-}
+    
 	tp_info.manufacture = ts->manu_name;			
 	TPD_DEBUG("synatpitcs_fw: fw_name = %s \n",ts->fw_name);
 	register_device_proc("tp", tp_info.version, tp_info.manufacture);	
@@ -3610,4 +3612,5 @@ module_exit(tpd_driver_exit);
 
 MODULE_DESCRIPTION("Synaptics S3203 Touchscreen Driver");
 MODULE_LICENSE("GPL");
+
 
