@@ -16,6 +16,11 @@
 	tlmm_pinmux: pinctrl@1000000 {
 	
 	    /delete-node/ tps61310_pins;
+		/delete-node/ spi2_cs2_active;
+		/delete-node/ spi2_cs2_suspend;
+		/delete-node/ spi2_active;
+		/delete-node/ spi2_suspend;
+		/delete-node/ ice40-spi-usb-pins;
 		
 		tp_gpio_id1_config {
 			qcom,pins = <&gp 109>;
@@ -235,23 +240,6 @@
 			};
 		};
 		
-		pmx_i2c_3 {
-		        /* CLK, DATA */
-		    qcom,pins = <&gp 10>, <&gp 11>;
-		    qcom,num-grp-pins = <2>;
-		    qcom,pin-func = <2>;
-		    label = "pmx_i2c_3";
-		        /* active state */
-		    i2c_3_active: i2c_3_active {
-			            drive-strength = <2>; /* 2 MA */
-			            bias-pull-up;
-		     };
-		            /*suspended state */
-		     i2c_3_sleep: i2c_3_sleep {
-			            drive-strength = <2>; /* 2 MA */
-			            bias-pull-up;
-		     };
-	    };
 		
 		tlmm_gpio_key {
               qcom,pins = <&gp 107> , <&gp 108>;
@@ -288,6 +276,8 @@
 				drive-strength = <8>; /* 8 MA */
 			};
 		};
+		
 	};
 };
+
 

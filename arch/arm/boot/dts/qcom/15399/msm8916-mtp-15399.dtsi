@@ -21,12 +21,6 @@
 #include "dsi-panel-oppo15399truly_nt35521s_720p_video.dtsi"
 
 &soc {
-
-     bt_a2dp_rx: qcom,msm-dai-q6-bt-a2dp-rx {
-			compatible = "qcom,msm-dai-q6-dev";
-			qcom,msm-dai-q6-dev-id = <12290>;
-	};
-
 	devinfo {
 		compatible = "oppo-devinfo";
 		Hw,sub_hwid_1 = <&msm_gpio 86 0x00>;
@@ -76,7 +70,7 @@
 	
 	       /* External I2C controlled buck regulators */
    
-     	ncp6335d_regulator:	ncp6335d-regulator@1c {
+     	/*ncp6335d_regulator:	ncp6335d-regulator@1c {
 				compatible = "onnn,ncp6335d-regulator";
 				reg = <0x1c>;
 				onnn,vsel = <0>;
@@ -92,7 +86,7 @@
 				onnn,vsel-gpio = <&msm_gpio 111 1>;
 				onnn,discharge-enable;
 				onnn,restore-reg;
-	    };
+	    };*/
 
 	};
 
@@ -133,6 +127,7 @@
 			vdd-supply = <&pm8916_l17>;
 			vio-supply = <&pm8916_l6>;
 			apds,irq-gpio = <&msm_gpio 113 0x02>;
+            status = "disable";
 		};
 		
 		kionix@1f {
@@ -214,6 +209,7 @@
 			panel_id0 = <&msm_gpio 109 0x0>;
 			panel_id1 = <&msm_gpio 114 0x0>;
 			panel_id2 = <&msm_gpio 119 0x0>;
+            status = "disable";
 		};
 	};
 
@@ -270,13 +266,6 @@
 			qcom,non_standard_fastchg_current_ma = <512>;
 
 			regulator-name = "bq24196_otg_vreg";
-		};
-		
-		ktd2026@30 {
-			status = "okay";
-			compatible = "ktd,ktd2026";
-			reg = <0x30>;
-			ktd2026,max_brightness = <0x29>; //current: 0x00:0.125ma 0x07 1ma 0x29:5.25ma 0x4f:10ma 0xbf-0xff:24ma
 		};
 	};
 
@@ -351,6 +340,22 @@
 	qcom,ipc_router_modem_xprt {
 		/delete-property/ qcom,disable-pil-loading;
 	};
+	
+	qcom,iommu-ctx@1e25000 {
+				/delete-property/ qcom,report-error-on-fault;
+	};
+	
+	qcom,iommu-ctx@1e33000 {
+			/delete-property/	qcom,report-error-on-fault;
+	};
+
+	qcom,iommu-ctx@1e34000 {
+			/delete-property/	qcom,report-error-on-fault;
+	};
+	
+	qcom,iommu-ctx@1e36000 {
+			/delete-property/	qcom,report-error-on-fault;
+	};
 
 	qcom,smem@86300000 {
 		qcom,smd-modem {
@@ -358,27 +363,24 @@
 		};
 	};
 	
-	qcom,ion { 
+	qcom,ion {
+	
+	    /delete-node/ qcom,ion-heap@8;
+		
 	    qcom,ion-heap@21 {
 			reg = <21>;
 			qcom,ion-heap-type = "SYSTEM_CONTIG";
 		};
 	 };
-	 
-	 qcom,smem@86300000 {
-		qcom,smd-modem {
-			/delete-property/ qcom,not-loadable;
-	    };
-	};
 };
 	
 
 
-&blsp1_uart2 {
+/*&blsp1_uart2 {
 	status = "ok";
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart_console_sleep>;
-};
+};*/
 
 &pm8916_gpios {
 	gpio@c100 { /* GPIO 2 */
@@ -391,22 +393,6 @@
 	};
 };
 
-&spmi_bus {
-	qcom,pm8916@1 {
-		qcom,vibrator@c000 {
-			status = "okay";
-			qcom,vib-timeout-ms = <15000>;
-			qcom,vib-vtg-level-mV = <3100>;
-			qcom,vib-timemin-ms = <35>;
-		};
-	};
-
-	qcom,pm8916@0 {
-		qcom,leds@a100 {
-			status = "disabled";
-		};
-	};
-};
 
 &sdhc_1 {
 	vdd-supply = <&pm8916_l8>;
@@ -430,6 +416,7 @@
 };
 
 &sdhc_2 {
+    /delete-property/ vdd-supply;
 	vdd-gpio-en = <&msm_gpio 116 0x1>;
 	qcom,vdd-voltage-level = <2800000 2950000>;
 	qcom,vdd-current-level = <15000 400000>;
@@ -452,7 +439,8 @@
 			1 &intc 0 221 0
 			2 &msm_gpio 38 0>;
 	interrupt-names = "hc_irq", "pwr_irq", "status_irq";
-	cd-gpios = <&msm_gpio 38 0x0>;
+	/delete-property/ cd-gpios;
+	cd-gpios = <&msm_gpio 38 0>;
 
 	status = "ok";
 };
@@ -520,6 +508,8 @@
 };
 
 &qcom_crypto {
+    /delete-property/ qcom,use-sw-hmac-algo;
+	/delete-property/		qcom,use-sw-aead-algo;
 	status = "okay";
 };
 
@@ -545,12 +535,16 @@
 };
 
 &mdss_dsi0 {
+    /delete-property/ qcom,dsi-clk-ln-recovery;
     qcom,regulator-ldo-mode;
 	pinctrl-names = "mdss_default", "mdss_sleep";
 	pinctrl-0 = <&mdss_dsi_active &mdss_te_active>;
 	pinctrl-1 = <&mdss_dsi_suspend &mdss_te_suspend>;
 
 	qcom,dsi-pref-prim-pan = <&dsi_oppo15399boe_ili9881c_720p_video>;
+    qcom,dsi-pref-sub-pan = <&dsi_oppo15399tm_nt35521s_720p_video>;
+	qcom,dsi-pref-sub1-pan = <&dsi_oppo15399truly_nt35521s_720p_video>;
+	
 
 	qcom,platform-enable-gpio = <&msm_gpio 97 0>;
 	qcom,platform-reset-gpio = <&msm_gpio 25 0>;
@@ -625,6 +619,7 @@
 	   qcom,battery-data-high-sdi = <&mtp_high_sdi_batterydata>;
 	   qcom,battery-data-high-lg = <&mtp_high_lg_batterydata>;
 };
+
 
 
 

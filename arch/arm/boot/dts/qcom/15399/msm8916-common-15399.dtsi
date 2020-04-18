@@ -13,7 +13,6 @@
 / {
 	aliases {
 		i2c1 = &i2c_1; /* I2C1 controller device */
-		serial0 = &blsp1_uart2;
 	};
 
 	memory {
@@ -33,6 +32,8 @@
 			reg = <0x0 0x9ff00000 0x0 0x400000>;
 			label = "pstore_reserve_mem";
 		};
+		
+		/delete-node/ secure_region@0;
 
         //add for enlarge nv backup memory
 		nvbackup_regions: nvbackup_regions@0 {

@@ -10,7 +10,7 @@
  * GNU General Public License for more details.
  */
 
-#include "../msm8916-audio-internal_codec.dtsi"
+//#include "../msm8916-audio-internal_codec.dtsi"
 
 &soc {
 	sound {
