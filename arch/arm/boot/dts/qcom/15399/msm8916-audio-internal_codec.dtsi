@@ -16,7 +16,7 @@
 	sound {
 		qcom,msm-mclk-freq = <9600000>;
 		qcom,msm-mbhc-hphl-swh = <1>;
-		qcom,msm-hs-micbias-type = "external";
+		qcom,msm-hs-micbias-type = "internal";
 		qcom,msm-micbias2-ext-cap;
 		qcom,audio-routing =
 			"RX_BIAS", "MCLK",
@@ -40,7 +40,7 @@
 			 "AMIC3", "MIC BIAS External";
 		/*the_shahnawaz_sheikh, Modify end*/
 		/delete-property/ qcom,cdc-us-euro-gpios;
-		spk-pa-en = <&msm_gpio 20 0x00>;
+		spk-pa-en = <&msm_gpio 120 0x00>;
 		yda145_boost-en = <&msm_gpio 118 0x00>;
 		/*the_shahnawaz_sheikh, add for after evt2 headset compatible*/
     	pcb-ver-flag0 = <&msm_gpio 50 0x00>;
