@@ -510,7 +510,7 @@ int bq24196_set_input_chg_current(struct opchg_charger *chip, int iusbin_mA, boo
 	}
 
 	// add for 15109 compatible 1A and 2A charger
-	if(is_project(OPPO_15109) || is_project(OPPO_15399) && (get_PCB_Version() == HW_VERSION__10||get_PCB_Version() == HW_VERSION__12||get_PCB_Version() == HW_VERSION__14||get_PCB_Version() == HW_VERSION__15))
+	if((is_project(OPPO_15109) || is_project(OPPO_15399)) && (get_PCB_Version() == HW_VERSION__10||get_PCB_Version() == HW_VERSION__12||get_PCB_Version() == HW_VERSION__14||get_PCB_Version() == HW_VERSION__15))
 	{
 		//do nothing
 	}
