@@ -35,6 +35,21 @@
 			qcom,qpnp-rtc-alarm-pwrup = <1>;
 		};
 	};
+	
+	qcom,pm8916@1 {
+		qcom,vibrator@c000 {
+			status = "okay";
+			qcom,vib-timeout-ms = <15000>;
+			qcom,vib-vtg-level-mV = <3100>;
+			qcom,vib-timemin-ms = <35>;
+		};
+	};
 };
+
+&pm8916_leds {
+    status = "disabled";
+    /delete-node/ qcom,led_mpp_2;
+};
+
 
 
