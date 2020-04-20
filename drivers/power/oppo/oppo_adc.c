@@ -180,7 +180,7 @@ int opchg_get_prop_battery_voltage_now(struct opchg_charger *chip)
 		V_battery =(int)results.physical;
 
 		//battery voltage sampling Compensation
-		if(is_project(OPPO_15109))
+		if(is_project(OPPO_15109)||is_project(OPPO_15399))
 		{
 				V_battery += 20*1000;
 		}
