@@ -107,7 +107,7 @@ static void opchg_external_power_changed(struct power_supply *psy)
 	if(is_project(OPPO_14043) || is_project(OPPO_14037) || is_project(OPPO_14051) ||
 		is_project(OPPO_15005)|| is_project(OPPO_15057) ||is_project(OPPO_15025) ||
 		is_project(OPPO_15009)||is_project(OPPO_15037)|| is_project(OPPO_15035) ||
-		is_project(OPPO_15085) || is_project(OPPO_15109))
+		is_project(OPPO_15085) || is_project(OPPO_15109)||is_project(OPPO_15399))
 		opchg_set_input_chg_current(chip, chip->max_input_current[INPUT_CURRENT_BY_POWER], false);
 	else
 	opchg_set_input_chg_current(chip, chip->max_input_current[INPUT_CURRENT_MIN], false);

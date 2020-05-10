@@ -1068,7 +1068,7 @@ void opchg_check_lcd_onoff(struct opchg_charger *chip)
             opchg_config_input_chg_current(chip, INPUT_CURRENT_LCD, LCD_ON_CHARGING_INPUT_CURRENT_15085);
 			opchg_config_fast_current(chip, FAST_CURRENT_LCD, LCD_ON_CHARGING_FAST_CURRENT_15085);
 		}
-		else if (is_project(OPPO_15109))
+		else if (is_project(OPPO_15109)||is_project(OPPO_15399))
 		{
 			opchg_config_input_chg_current(chip, INPUT_CURRENT_LCD, LCD_ON_CHARGING_INPUT_CURRENT_15109);
 		}
@@ -1116,7 +1116,7 @@ void opchg_check_lcd_onoff(struct opchg_charger *chip)
 			opchg_config_input_chg_current(chip, INPUT_CURRENT_LCD, LCD_OFF_CHARGING_INPUT_CURRENT_15085);
 			opchg_config_fast_current(chip, FAST_CURRENT_LCD, LCD_OFF_CHARGING_FAST_CURRENT_15085);
 		}
-		else if (is_project(OPPO_15109))
+		else if (is_project(OPPO_15109)||is_project(OPPO_15399))
 		{
 			opchg_config_input_chg_current(chip, INPUT_CURRENT_LCD, LCD_OFF_CHARGING_INPUT_CURRENT_15109);
 		}
@@ -1700,7 +1700,7 @@ void opchg_update_thread(struct work_struct *work)
 	}
 
 	/* Add to avoid some status sync error when changer plugout */
-	if( is_project(OPPO_15035)|| is_project(OPPO_15109))
+	if( is_project(OPPO_15035)|| is_project(OPPO_15109)||is_project(OPPO_15399))
 	{
 		// do noting
 	}

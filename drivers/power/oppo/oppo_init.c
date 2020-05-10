@@ -572,7 +572,7 @@ static int opcharger_charger_probe(struct i2c_client *client, const struct i2c_d
 		}
 	}
 
-	if( is_project(OPPO_15005) || is_project(OPPO_15025)|| is_project(OPPO_15035)||is_project(OPPO_15109)) {
+	if( is_project(OPPO_15005) || is_project(OPPO_15025)|| is_project(OPPO_15035)||is_project(OPPO_15109)||is_project(OPPO_15399)) {
 		// do noting
 	} else {
 		opchg_chip = chip;
@@ -647,7 +647,7 @@ static int opcharger_charger_probe(struct i2c_client *client, const struct i2c_d
 	if(is_project(OPPO_14043)  || is_project(OPPO_14037) || is_project(OPPO_14051)||
 		is_project(OPPO_15005) || is_project(OPPO_15057) || is_project(OPPO_15025)||
 		is_project(OPPO_15009) || is_project(OPPO_15037) || is_project(OPPO_15085)||
-		is_project(OPPO_15109)) {
+		is_project(OPPO_15109)||is_project(OPPO_15399)) {
 		if(gpio_is_valid(chip->usbin_switch_gpio)){
 			rc = gpio_request(chip->usbin_switch_gpio,"opcharger_usbin_switch");
 			if(rc)

@@ -942,7 +942,7 @@ int opchg_get_initial_state(struct opchg_charger *chip)
 
 	case OPCHG_BQ24196_ID:
 		if ((is_project(OPPO_15029) && get_PCB_Version() == HW_VERSION__10)||
-			(is_project(OPPO_15109) && (get_PCB_Version() == HW_VERSION__10||get_PCB_Version() == HW_VERSION__12||get_PCB_Version() == HW_VERSION__14||get_PCB_Version() == HW_VERSION__15)))
+			(is_project(OPPO_15109) && (get_PCB_Version() == HW_VERSION__10||get_PCB_Version() == HW_VERSION__12||get_PCB_Version() == HW_VERSION__14||get_PCB_Version() == HW_VERSION__15))||is_project(OPPO_15399))
 		{
 			rc = bq24196_get_initial_state(chip);
 		}
